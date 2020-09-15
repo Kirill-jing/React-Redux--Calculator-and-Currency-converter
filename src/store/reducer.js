@@ -1,42 +1,78 @@
 
 const initialState = {
-    counter:' ',
+    counter:'',
     resulte:[],
     calc:undefined,
-    reg:(/[+-]/)
+    anchorEl:null
+
 }
 
 const reducer =(state=initialState,action)=>{
-    if(action.type==='INCREMENT'){
-        return{
+    switch(action.type){
+        case 'CLOSE':
+        return {
+            ...state,
+            anchorEl:null
+        }
+        case 'CLICK':
+        return {
+            ...state,
+            anchorEl:action.e
+        }
+    case 'INCREMENT':
+       return {
             ...state,
             counter:state.counter+action.val
+        };
+    case 'CALC':
+        let expression = action.value;
+        let exp = Function('return '+expression);
+        let fix= exp()
+        
+        return{
+                ...state,
+                calc:exp(),
+                counter:String(fix.toFixed(2))
+           
         }
-    }
-    else if(action.type==='STORE'){
+    case 'ROOT':
+        let strroot =action.sq
+        let nwroot = strroot.pop()
+        strroot.push(Math.sqrt(nwroot))
+        let newstr2 =strroot.join('')
         return{
             ...state,
-            resulte:state.resulte.concat({value:state.counter,id:Math.random()})
+            counter:newstr2,
         }
-    }
-    else if(action.type==='CALC'){
-        var expression = action.value;
-        var exp = Function('return '+expression);
+    case 'SQUARE':
+        let str =action.sq
+        let nw = str.pop()
+        str.push(nw**2)
+        let newstr1 =str.join('')
         return{
             ...state,
-            calc:exp()
+            counter:newstr1
         }
-    }
-    else if(action.type==='SQUARE'){  
-        let count=Math.sqrt(action.sq)
-        let newcounter=state.counter.slice(0,state.counter.length-1)+count
+    case 'DELETEONE':
+        let newstr=state.counter.slice(0,action.del)
+        return {
+            ...state,
+            counter:newstr,
+            calc:0
+        }
+    case 'DELETEALL':
         return{
             ...state,
-            counter:newcounter,
-  
+            counter:' ',
+            calc:0
         }
-    }
-    return state
+        }
+            return state
+        
+
+    
+
+
 }
 
 export default reducer
