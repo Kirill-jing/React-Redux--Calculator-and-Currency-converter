@@ -1,30 +1,32 @@
-
+import * as actiontype from './actions/actions'
 const initialState = {
     counter:'',
     resulte:[],
     calc:undefined,
-    anchorEl:null
-
+    anchorEl:null,
+    data:{},
+ 
 }
+
 
 const reducer =(state=initialState,action)=>{
     switch(action.type){
-        case 'CLOSE':
+        case actiontype.CLOSE:
         return {
             ...state,
             anchorEl:null
         }
-        case 'CLICK':
+        case actiontype.CLICK:
         return {
             ...state,
             anchorEl:action.e
         }
-    case 'INCREMENT':
+    case actiontype.INCREMENT:
        return {
             ...state,
             counter:state.counter+action.val
         };
-    case 'CALC':
+    case actiontype.CALC:
         let expression = action.value;
         let exp = Function('return '+expression);
         let fix= exp()
@@ -35,7 +37,7 @@ const reducer =(state=initialState,action)=>{
                 counter:String(fix.toFixed(2))
            
         }
-    case 'ROOT':
+    case actiontype.ROOT:
         let strroot =action.sq
         let nwroot = strroot.pop()
         strroot.push(Math.sqrt(nwroot))
@@ -44,7 +46,7 @@ const reducer =(state=initialState,action)=>{
             ...state,
             counter:newstr2,
         }
-    case 'SQUARE':
+    case actiontype.SQUARE:
         let str =action.sq
         let nw = str.pop()
         str.push(nw**2)
@@ -53,20 +55,17 @@ const reducer =(state=initialState,action)=>{
             ...state,
             counter:newstr1
         }
-    case 'DELETEONE':
+    case actiontype.DELETEONE:
         let newstr=state.counter.slice(0,action.del)
         return {
             ...state,
             counter:newstr,
             calc:0
         }
-    case 'DELETEALL':
-        return{
-            ...state,
-            counter:' ',
-            calc:0
+
         }
-        }
+
+        
             return state
         
 

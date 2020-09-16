@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {NavLink}  from 'react-router-dom'
-
+import * as actionCreators from '../store/actions/actions'
 
 const MyButton = styled(Button)({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -102,8 +102,8 @@ class Join extends Component{
 
         <MyInput type='text'value={this.props.ctr}></MyInput>
     <Grbtn>  
-        <MyButton onClick={()=>this.props.onRoot(this.props.ctr.split(' '))}>{'\u221a'}</MyButton>
-        <MyButton onClick={()=>this.props.onSquare(this.props.ctr.split(' '))} >{'x'+'\u00B2'}</MyButton>
+<MyButton onClick={()=>this.props.onRoot(this.props.ctr.split(' '))}>{'\u221a'}</MyButton>
+<MyButton onClick={()=>this.props.onSquare(this.props.ctr.split(' '))} >{'x'+'\u00B2'}</MyButton>
 <MyButton onClick={()=>this.props.DeleteAll()} >C</MyButton>
 <MyButton onClick={()=>this.props.onAdd(' / ')}>{'\u00F7'}</MyButton>
 </Grbtn>  
@@ -131,7 +131,14 @@ class Join extends Component{
 <MyButton onClick={()=>this.props.onAdd('.')} >,</MyButton>
 <MyButton onClick={()=>this.props.calc(this.props.ctr)} >=</MyButton>
 </Grbtn>
+<MyButton onClick={()=>this.props.onStoreResult()} >,</MyButton>
 
+
+<ul>
+                    {this.props.valute.map(cur => (
+                        <li >{cur}</li>
+                    ))}
+                </ul>
 </Gr>
 </Main>
 
@@ -142,10 +149,12 @@ class Join extends Component{
 const mapStateToProps=state=>{
 
     return{
-        ctr:state.counter,
-        storedRes:state.resulte,
-        calcRes:state.calc,
-        anchorEl:state.anchorEl
+        ctr:state.ctr.counter,
+        storedRes:state.ctr.resulte,
+        calcRes:state.ctr.calc,
+        anchorEl:state.ctr.anchorEl,
+        stored:state.res.data,
+        valute:state.res.valute
     }
 }
 const mapDispatchToProps=dispatch=>{
@@ -156,7 +165,9 @@ const mapDispatchToProps=dispatch=>{
     onSquare:(n)=>dispatch({type:'SQUARE',sq:n}),
     DeleteOne:(n)=>dispatch({type:'DELETEONE',del:n}),
     handleClick:(event)=>dispatch({type:'CLICK' ,e:event.currentTarget }),
-    handleClose:()=>dispatch({type:'CLOSE'})
+    handleClose:()=>dispatch({type:'CLOSE'}),
+    onStoreResult: (result) => dispatch(actionCreators.storeResult(result)),
+
     }
 }
 
