@@ -42,9 +42,13 @@ flex-direction:column;
        
     })
 class Join extends Component{
+  componentDidMount(){
+    this.props.onStoreResult();
+  }
 
 
     render (){
+ 
        const StyledMenuItem = withStyles((theme) => ({
             root: {
               '&:focus': {
@@ -131,14 +135,22 @@ class Join extends Component{
 <MyButton onClick={()=>this.props.onAdd('.')} >,</MyButton>
 <MyButton onClick={()=>this.props.calc(this.props.ctr)} >=</MyButton>
 </Grbtn>
+
 <MyButton onClick={()=>this.props.onStoreResult()} >,</MyButton>
+<select name="type"  onChange={event=>this.props.cur1(event.target.value)} >
+            <option value='AUD'>Австралийский доллор</option>
+            <option value="галогенные">галогенные</option>
+            <option value="энергосберегающие" selected>энергосберегающие</option>
+            </select>
+            <input type='number' onChange={event=>this.props.setyourVal(event.target.value)}  ></input>
+            <select name="type"  onChange={event=>this.props.cur2(event.target.value)} >
+            <option value='AUD'>Австралийский доллор</option>
+            <option value="галогенные">галогенные</option>
+            <option value="энергосберегающие" selected>энергосберегающие</option>
+            </select>
+            <button onClick={()=>this.props.change()}></button>
 
 
-<ul>
-                    {this.props.valute.map(cur => (
-                        <li >{cur}</li>
-                    ))}
-                </ul>
 </Gr>
 </Main>
 
@@ -147,14 +159,18 @@ class Join extends Component{
 }
 
 const mapStateToProps=state=>{
-
+console.log(state.res.final)
     return{
         ctr:state.ctr.counter,
         storedRes:state.ctr.resulte,
         calcRes:state.ctr.calc,
         anchorEl:state.ctr.anchorEl,
         stored:state.res.data,
-        valute:state.res.valute
+        valute:state.res.valute,
+        valute2:state.res.valute2,
+        yourval:state.res.yourval,
+        final:state.res.final
+
     }
 }
 const mapDispatchToProps=dispatch=>{
@@ -167,6 +183,10 @@ const mapDispatchToProps=dispatch=>{
     handleClick:(event)=>dispatch({type:'CLICK' ,e:event.currentTarget }),
     handleClose:()=>dispatch({type:'CLOSE'}),
     onStoreResult: (result) => dispatch(actionCreators.storeResult(result)),
+    cur1:(cur1)=>dispatch({type:'CUR_1',val1:cur1}),
+    cur2:(cur2)=>dispatch({type:'CUR_2',val2:cur2}),
+    setyourVal:(your)=>dispatch({type:'YOURVAL',yourval:your}),
+    change:()=>dispatch({type:'CHANGE'})
 
     }
 }

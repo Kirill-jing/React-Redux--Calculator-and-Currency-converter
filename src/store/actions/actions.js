@@ -6,6 +6,10 @@ export const ROOT='ROOT'
 export const SQUARE='SQUARE'
 export const CALC = 'CALC'
 export const STORE_RESULT = 'STORE_RESULT'
+export const CUR_1='CUR_1'
+export const CUR_2='CUR_2'
+export const YOURVAL='YOURVAL'
+export const CHANGE='CHANGE'
 
 export const saveResult = ( data ) => {
     return {
