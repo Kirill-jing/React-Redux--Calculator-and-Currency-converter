@@ -5,10 +5,7 @@ const initialState = {
     calc:undefined,
     anchorEl:null,
     data:{},
- 
 }
-
-
 const reducer =(state=initialState,action)=>{
     switch(action.type){
         case actiontype.CLOSE:
@@ -30,12 +27,10 @@ const reducer =(state=initialState,action)=>{
         let expression = action.value;
         let exp = Function('return '+expression);
         let fix= exp()
-        
         return{
                 ...state,
                 calc:exp(),
-                counter:String(fix.toFixed(2))
-           
+                counter:fix
         }
     case actiontype.ROOT:
         let strroot =action.sq
@@ -56,22 +51,34 @@ const reducer =(state=initialState,action)=>{
             counter:newstr1
         }
     case actiontype.DELETEONE:
-        let newstr=state.counter.slice(0,action.del)
         return {
             ...state,
-            counter:newstr,
+            counter:'',
             calc:0
         }
-
+        case actiontype.LOG:
+            let strn =action.pow
+            let nwn = strn.pop()
+            strn.push(Math.log(nwn))
+            let newstr1n =strn.join('')
+            return {
+                ...state,
+                counter:newstr1n,
+                calc:newstr1n 
+            }
+            case actiontype.EXP:
+                let estr =action.exp
+                let expo = estr.pop()
+                estr.push(Math.exp(expo))
+                let newstrexp =estr.join('')
+                return {
+                    ...state,
+                    counter:newstrexp,
+                    calc:newstrexp 
+                }
         }
-
         
             return state
-        
-
-    
-
-
 }
 
 export default reducer

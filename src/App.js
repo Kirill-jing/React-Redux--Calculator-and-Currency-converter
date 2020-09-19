@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter ,  Route,Router, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter ,  Route, Switch } from 'react-router-dom';
 
-import Join from './Containers/Join'
-import Chat from './Containers/Chat'
+import Calculator from './Containers/Calculator'
+import Converter from './Containers/Converter'
 
  class App extends Component {
    render(){
      return(
 <BrowserRouter >
 <Switch>
-<Route path = '/' exact component={Join}></Route>
-<Route path = '/chat' component={Chat}></Route>
+<Route path = '/' exact component={Calculator}></Route>
+<Route path = '/converter' component={Converter}></Route>
 </Switch>
 </BrowserRouter>
      

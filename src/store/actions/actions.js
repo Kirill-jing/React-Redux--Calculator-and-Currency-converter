@@ -10,6 +10,8 @@ export const CUR_1='CUR_1'
 export const CUR_2='CUR_2'
 export const YOURVAL='YOURVAL'
 export const CHANGE='CHANGE'
+export const LOG='LOG'
+export const EXP='EXP'
 
 export const saveResult = ( data ) => {
     return {
