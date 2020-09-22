@@ -30,7 +30,7 @@ const reducer =(state=initialState,action)=>{
         return{
                 ...state,
                 calc:exp(),
-                counter:fix
+                counter:String(fix)
         }
     case actiontype.ROOT:
         let strroot =action.sq

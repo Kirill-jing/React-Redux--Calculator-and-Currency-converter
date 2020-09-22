@@ -10,6 +10,7 @@ import {NavLink}  from 'react-router-dom'
 import * as actionCreators from '../store/actions/actions'
 import Button from '@material-ui/core/Button';
 
+
 const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   border: 0,
@@ -43,6 +44,7 @@ class Join extends Component{
   componentDidMount(){
     this.props.onStoreResult();
   }
+
     render (){
     const StyledMenuItem = withStyles((theme) => ({
       root: {
@@ -75,6 +77,7 @@ class Join extends Component{
 
         return(
      <Main>
+   
           <Gr >
         <TextField  type='text' 
           InputLabelProps={{
@@ -91,23 +94,23 @@ class Join extends Component{
 </Grbtn>  
   <Grbtn>    
 <MyButton onClick={()=>this.props.onAdd(' ** ')}>X^n</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'1')} >1</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'2')} >2</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'3')} >3</MyButton>
+<MyButton onClick={()=>this.props.onAdd('1')} >1</MyButton>
+<MyButton onClick={()=>this.props.onAdd('2')} >2</MyButton>
+<MyButton onClick={()=>this.props.onAdd('3')} >3</MyButton>
 <MyButton onClick={()=>this.props.onAdd(' * ')} >{'\u00D7'}</MyButton>
 </Grbtn>  
 <Grbtn>  
 <MyButton onClick={()=>this.props.onLog(this.props.ctr.split(' '))} >log</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'4')} >4</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'5')} >5</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'6')} >6</MyButton>
+<MyButton onClick={()=>this.props.onAdd('4')} >4</MyButton>
+<MyButton onClick={()=>this.props.onAdd('5')} >5</MyButton>
+<MyButton onClick={()=>this.props.onAdd('6')} >6</MyButton>
 <MyButton onClick= {()=>this.props.onAdd(' + ')} >+</MyButton>
 </Grbtn>
 <Grbtn>   
 <MyButton onClick={()=>this.props.onExp(this.props.ctr.split(' '))} >exp</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'7')} >7</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'8')} >8</MyButton>
-<MyButton onClick={()=>this.props.onAdd(+'9')} >9</MyButton>
+<MyButton onClick={()=>this.props.onAdd('7')} >7</MyButton>
+<MyButton onClick={()=>this.props.onAdd('8')} >8</MyButton>
+<MyButton onClick={()=>this.props.onAdd('9')} >9</MyButton>
 <MyButton  onClick= {()=>this.props.onAdd(' - ')} >-</MyButton>
 </Grbtn> 
 <Grbtn>  
@@ -115,6 +118,9 @@ class Join extends Component{
 <MyButton onClick={()=>this.props.onAdd('0')} >0</MyButton>
 <MyButton onClick={()=>this.props.onAdd('.')} >,</MyButton>
 <MyButton onClick={()=>this.props.calc(this.props.ctr)} >=</MyButton>
+
+
+
 </Grbtn>
 <Grbtn>
 <MyButton
@@ -135,6 +141,7 @@ class Join extends Component{
   </StyledMenuItem>
 </StyledMenu>
 </Grbtn>
+
 </Gr>
 </Main>
        )
