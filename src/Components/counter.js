@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-let counter=(props)=>{
-return <div>{props.ctr}</div>
-}
+let counter = (props) => {
+  return <div>{props.ctr}</div>;
+};
 
-export default counter
+export default counter;
